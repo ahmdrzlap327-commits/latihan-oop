@@ -16,31 +16,48 @@ package id.ac.polinema.library;
  *   public ____ year;
  *   public ____ available;
  */
-public class Book {
+public class Book extends LibraryItem {
 
     /**
      * Membuat buku baru yang masih tersedia (belum dipinjam).
      * Bagian 3: isbn tidak boleh kosong; title dan year divalidasi seperti setter-nya.
      */
-    public String isbn;
-    public String title;
-    public int year;
-    public boolean available;
+    private String isbn;
+    private Author author;
+
     public Book(String isbn, String title, int year) {
         // TODO Bantuan: isi semua field. Buku baru: apakah sedang dipinjam atau tidak?
         // Bagian 3: aturan validasi judul dan tahun sama dengan setter. Bisakah constructor
         // memakai setter-nya?
-        //
-        // Kerangka (Bagian 2):
-          this.isbn = isbn;
-          this.title = title;
-          this.year = year;
-          this.available = true;
+        super(title, year);
+        if (isbn == null || isbn.trim().isEmpty()) {
+            throw new IllegalArgumentException("ISBN tidak boleh kosong");
+        }
+        this.isbn = isbn;
+        // this.title = title;
+        // this.year = year;
         //
         // Kerangka (Bagian 3): ganti dua baris title dan year dengan pemanggilan setter.
-        //   setTitle(____);
-        //   setYear(____);
-        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public Book(String isbn, String title, int year, Author author) {
+        this(isbn, title, year); // Memanggil constructor 3 parameter milik class ini sendiri
+        setAuthor(author);
+    }
+
+    @Override
+    public int loanDays() {
+        return 14; // Overriding: menimpa nilai 7 dari induk menjadi 14
+    }
+
+    @Override
+    public String describe() {
+        String authorName = "Unknown";
+        if (getAuthor() != null) {
+            authorName = getAuthor().getName();
+        }
+        // super.describe() mengambil format "Judul (Tahun)" dari LibraryItem
+        return super.describe() + " by " + authorName;
     }
 
     public String getIsbn() {
@@ -61,36 +78,15 @@ public class Book {
     }
 
     /** True jika buku sedang ada di perpustakaan (tidak dipinjam). */
-    public boolean isAvailable() {
-        // TODO Bantuan: field apa yang menyimpan status pinjam?
-        //
-        // Kerangka:
-          return available;
-    }
+    
 
     /**
      * Meminjam buku. Berhasil (true) jika buku tersedia. Jika buku sedang
      * dipinjam, hasilnya false dan keadaan buku tidak berubah.
      */
-    public boolean checkOut() {
-        // TODO Bantuan: apa yang harus kamu periksa lebih dulu sebelum mengubah status?
-        // Method ini punya dua jalur return yang berbeda.
-        //
-        // Kerangka:
-        if (available) {
-            available = false;
-            return true;
-        }
-        return false;
-    }
+    
 
     /** Mengembalikan buku: buku bisa dipinjam lagi. */
-    public void returnItem() {
-        // TODO Bantuan: satu baris saja. Status apa yang berubah?
-        //
-        // Kerangka:
-        available = true;
-    }
 
     /**
      * Bagian 3. Mengubah judul. Judul null, kosong, atau hanya spasi ditolak
@@ -101,11 +97,10 @@ public class Book {
         // memeriksa teks kosong atau hanya spasi. Jangan lupa kemungkinan null.
         //
         // Kerangka:
-        //   if (title == null || ____) {
-        //       throw new IllegalArgumentException("____");
-        //   }
-        //   this.title = title;
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Judul tidak boleh kosong");
+        }
+        this.title = title;
     }
 
     /**
@@ -116,10 +111,17 @@ public class Book {
         // TODO Bantuan: pola yang sama dengan setTitle. Apa syarat tahun yang valid?
         //
         // Kerangka:
-        //   if (year ____ 0) {
-        //       throw new IllegalArgumentException("____");
-        //   }
-        //   this.year = year;
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (year <= 0) {
+            throw new IllegalArgumentException("Tahun harus positif");
+        }
+        this.year = year;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }

@@ -1,5 +1,7 @@
 package id.ac.polinema.library;
 
+import java.util.Scanner;
+
 /**
  * Titik awal program (satu-satunya method main di proyek ini).
  *
@@ -22,5 +24,25 @@ public class Main {
         // Kerangka:
 
         // Bagian 7: lanjutkan di sini (buat Library, isi data contoh, jalankan LibraryApp).
+        Library library = new Library("Polinema Library");
+
+        // Menambahkan data contoh sesuai instruksi
+        Author author = new Author("Robert Martin", "USA");
+        Book book = new Book("978-0132350884", "Clean Code", 2008, author);
+        library.addItem(book);
+
+        Dvd dvd = new Dvd("Inception", 2010, 148);
+        library.addItem(dvd);
+
+        Magazine magazine = new Magazine("Tempo", 2024, 7);
+        library.addItem(magazine);
+
+        Member member = new Member("M001", "Budi");
+        library.addMember(member);
+
+        // Menjalankan LibraryApp dengan input keyboard (System.in) dan output layar (System.out)
+        Scanner scanner = new Scanner(System.in);
+        LibraryApp app = new LibraryApp(library, scanner, System.out);
+        app.run();
     }
 }
