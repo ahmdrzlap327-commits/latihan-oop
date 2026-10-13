@@ -3,7 +3,7 @@ package id.ac.polinema.library;
 public class LibraryItem {
     protected String title;
     protected int year;
-    protected  boolean available;
+    private boolean available;
     private int extraDays;
 
     public LibraryItem(String title, int year) {
@@ -13,7 +13,9 @@ public class LibraryItem {
         this.extraDays = 0;
     }
 
-    public String getTitle() { return title; }
+    public String getTitle() { 
+        return title; 
+    }
 
     public void setTitle(String title) {
         if (title == null || title.trim().isEmpty()) {
