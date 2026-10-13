@@ -14,15 +14,13 @@ package id.ac.polinema.library;
  *   public ____ country;
  */
 public class Author {
-
+    String name;
+    String country;
+    
     /** Membuat penulis dengan nama dan negara asal. */
     public Author(String name, String country) {
-        // TODO Bantuan: nama parameter sama dengan nama field. Kata kunci apa yang
-        // menunjuk ke objek yang sedang dibuat?
-        //
-        // Kerangka:
-        //   this.name = ____;
-        //   this.country = ____;
+        this.name = name;
+        this.country = country;
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
