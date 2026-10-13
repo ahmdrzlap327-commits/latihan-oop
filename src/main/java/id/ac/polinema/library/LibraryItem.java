@@ -3,7 +3,7 @@ package id.ac.polinema.library;
 public class LibraryItem {
     protected String title;
     protected int year;
-    private boolean available;
+    protected  boolean available;
     private int extraDays;
 
     public LibraryItem(String title, int year) {
