@@ -37,7 +37,6 @@ public class Member {
         setName(name);
         this.loanCount = 0;
         this.card = new LibraryCard("CARD-" + memberId);
-        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     public String getMemberId() {
@@ -59,7 +58,6 @@ public class Member {
             throw new IllegalArgumentException("Nama tidak boleh kosong");
         }
         this.name = name;
-        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     public int getLoanCount() {
