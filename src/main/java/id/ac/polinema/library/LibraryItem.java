@@ -31,7 +31,9 @@ public class LibraryItem {
         this.year = year;
     }
 
-    public boolean isAvailable() { return available; }
+    public boolean isAvailable() { 
+        return available; 
+    }
 
     public boolean checkOut() {
         if (!available) {

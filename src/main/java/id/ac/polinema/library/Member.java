@@ -80,9 +80,9 @@ public class Member {
         //
         // Kerangka:
         if (!canBorrow()) {
-            loanCount++;
             return false;
         }
+        loanCount++;
         return true;
     }
 
@@ -91,11 +91,11 @@ public class Member {
         // TODO Bantuan: batas bawah jumlah pinjaman adalah berapa?
         //
         // Kerangka:
-        if (loanCount > 0) {
-            loanCount--;
-            return true;
+        if (loanCount <= 0) {
+            return false;
         }
-        return false;
+        loanCount--;
+        return true;
     }
 
     public LibraryCard getCard() {
