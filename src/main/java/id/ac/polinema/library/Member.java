@@ -36,6 +36,7 @@ public class Member {
         this.memberId = memberId;
         setName(name);
         this.loanCount = 0;
+        this.card = new LibraryCard("CARD-" + memberId);
         throw new UnsupportedOperationException("Not implemented yet");
     }
 

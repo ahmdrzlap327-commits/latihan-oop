@@ -10,30 +10,10 @@ public class LibraryItem {
         setTitle(title);
         setYear(year);
         this.available = true;
+        this.extraDays = 0;
     }
 
-    public String getTitle() { 
-        return title; 
-    }
-
-    public int loanDays() {
-        return 7; // Standar peminjaman 7 hari
-    }
-
-    public String describe() {
-        return title + " (" + year + ")";
-    }
-
-    public String toString() {
-        return describe(); // Memanfaatkan metode describe() yang sudah ada
-    }
-
-    public void extendLoan(int days) {
-        if (days <= 0) {
-            throw new IllegalArgumentException("Perpanjangan harus positif");
-        }
-        this.extraDays += days;
-    }
+    public String getTitle() { return title; }
 
     public void setTitle(String title) {
         if (title == null || title.trim().isEmpty()) {
@@ -51,17 +31,7 @@ public class LibraryItem {
         this.year = year;
     }
 
-    public void extendLoan() {
-        extendLoan(7);
-    }
-
-    public int getTotalLoanDays() {
-        return loanDays() + extraDays; 
-    }
-
-    public boolean isAvailable() { 
-        return available; 
-    }
+    public boolean isAvailable() { return available; }
 
     public boolean checkOut() {
         if (!available) {
@@ -73,5 +43,32 @@ public class LibraryItem {
 
     public void returnItem() {
         available = true;
+    }
+
+    public int loanDays() {
+        return 7;
+    }
+
+    public String describe() {
+        return title + " (" + year + ")";
+    }
+
+    public String toString() {
+        return describe();
+    }
+
+    public void extendLoan(int days) {
+        if (days <= 0) {
+            throw new IllegalArgumentException("Hari perpanjangan harus positif");
+        }
+        this.extraDays += days;
+    }
+
+    public void extendLoan() {
+        extendLoan(7);
+    }
+
+    public int getTotalLoanDays() {
+        return loanDays() + extraDays;
     }
 }

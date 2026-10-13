@@ -97,7 +97,12 @@ public class Library {
         LibraryItem item = findItemByTitle(title);
         
         // Cek semua syarat: objek ada, boleh pinjam, dan item tersedia
-        if (member != null && item != null && member.canBorrow() && item.isAvailable()) {
+        if (member == null || item == null) {
+            return false;
+        }
+        
+        // Memanfaatkan Librarian atau aturan langsung
+        if (member.canBorrow() && item.isAvailable()) {
             item.checkOut();
             member.addLoan();
             return true;
