@@ -5,6 +5,9 @@ public class Magazine extends LibraryItem {
 
     public Magazine(String title, int year, int issueNumber) {
         super(title, year);
+        if (issueNumber <= 0) {
+            throw new IllegalArgumentException("Nomor edisi harus positif");
+        }
         this.issueNumber = issueNumber;
     }
 

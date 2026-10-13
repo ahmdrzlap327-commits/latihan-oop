@@ -5,6 +5,9 @@ public class Dvd extends LibraryItem {
 
     public Dvd(String title, int year, int durationMinutes) {
         super(title, year);
+        if (durationMinutes <= 0) {
+            throw new IllegalArgumentException("Durasi harus positif");
+        }
         this.durationMinutes = durationMinutes;
     }
 
