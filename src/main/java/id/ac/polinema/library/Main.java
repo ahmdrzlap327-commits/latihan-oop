@@ -44,5 +44,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         LibraryApp app = new LibraryApp(library, scanner, System.out);
         app.run();
+        System.out.println();
     }
 }
